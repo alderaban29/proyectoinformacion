@@ -1,0 +1,12 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="LAB04-PC09_SQLEXPRESS.BDPanaderia_OLTP"
+  DTS:DTSID="{720CAEF1-2018-4DB9-8990-C9B461C96024}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectRetryCount="1"
+      DTS:ConnectRetryInterval="5"
+      DTS:ConnectionString="Data Source=LAB04-PC09\SQLEXPRESS;Initial Catalog=BDPanaderia_OLTP;Provider=SQLNCLI11.1;Integrated Security=SSPI;Application Name=SSIS-SISS-{720CAEF1-2018-4DB9-8990-C9B461C96024}LAB04-PC09\SQLEXPRESS.BDPanaderia_OLTP;Auto Translate=False;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

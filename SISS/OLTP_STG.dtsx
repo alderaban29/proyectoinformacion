@@ -1,0 +1,632 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="4/19/2023 1:52:37 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="LAB04-PC09"
+  DTS:CreatorName="LAB04-PC09\Alumno"
+  DTS:DTSID="{B65D1830-852A-4A68-BE21-D36934258010}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5035.3"
+  DTS:LocaleID="3082"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="5"
+  DTS:VersionGUID="{AA283EFD-D255-4859-BD48-FB0D05C64E0B}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\cARGA_STG_PEDIDO"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tarea Flujo de datos"
+      DTS:DTSID="{B1BD0B1C-70E1-4EB5-8FA7-920780FDB45E}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="cARGA_STG_PEDIDO"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\cARGA_STG_PEDIDO\Columna derivada"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Columna derivada;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
+              description="Crea nuevos valores de columna aplicando expresiones a las columnas de entrada de la transformación. Crea nuevas columnas o sobrescribe las columnas existentes. Por ejemplo, se concatenan los valores de las columnas 'nombre' y 'apellidos' para crear una columna 'nombre completo'."
+              name="Columna derivada"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\cARGA_STG_PEDIDO\Columna derivada.Inputs[Entrada de columna derivada]"
+                  description="Entrada en la transformación Columna derivada"
+                  name="Entrada de columna derivada">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\cARGA_STG_PEDIDO\Columna derivada.Inputs[Entrada de columna derivada].Columns[Giro]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="Giro"
+                      lineageId="Package\cARGA_STG_PEDIDO\LEER_T_PEDIDO.Outputs[Salida de origen de OLE DB].Columns[Giro]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\cARGA_STG_PEDIDO\Columna derivada.Outputs[Salida de columna derivada]"
+                  description="Salida predeterminada de la transformación Columna derivada"
+                  exclusionGroup="1"
+                  name="Salida de columna derivada"
+                  synchronousInputId="Package\cARGA_STG_PEDIDO\Columna derivada.Inputs[Entrada de columna derivada]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\cARGA_STG_PEDIDO\Columna derivada.Outputs[Salida de columna derivada].Columns[tx_Giro]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Cálculo"
+                      errorRowDisposition="FailComponent"
+                      length="10"
+                      lineageId="Package\cARGA_STG_PEDIDO\Columna derivada.Outputs[Salida de columna derivada].Columns[tx_Giro]"
+                      name="tx_Giro"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expresión de columna derivada"
+                          name="Expression">#{Package\cARGA_STG_PEDIDO\LEER_T_PEDIDO.Outputs[Salida de origen de OLE DB].Columns[Giro]} == "R" ? "Restaurant" : #{Package\cARGA_STG_PEDIDO\LEER_T_PEDIDO.Outputs[Salida de origen de OLE DB].Columns[Giro]} == "C" ? "Café" : "Minorista"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expresión descriptiva de columna derivada"
+                          expressionType="Notify"
+                          name="FriendlyExpression">Giro == "R" ? "Restaurant" : Giro == "C" ? "Café" : "Minorista"</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\cARGA_STG_PEDIDO\Columna derivada.Outputs[Salida de error de columna derivada]"
+                  description="Salida de error de la transformación Columna derivada"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de columna derivada"
+                  synchronousInputId="Package\cARGA_STG_PEDIDO\Columna derivada.Inputs[Entrada de columna derivada]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\cARGA_STG_PEDIDO\Columna derivada.Outputs[Salida de error de columna derivada].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\cARGA_STG_PEDIDO\Columna derivada.Outputs[Salida de error de columna derivada].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\cARGA_STG_PEDIDO\Columna derivada.Outputs[Salida de error de columna derivada].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\cARGA_STG_PEDIDO\Columna derivada.Outputs[Salida de error de columna derivada].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\cARGA_STG_PEDIDO\GRABAR_STG_PEDIDO"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destino de OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
+              description="Destino de OLE DB"
+              name="GRABAR_STG_PEDIDO"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowset">[dbo].[STG_Pedidos]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Fuerza el uso del valor de la propiedad DefaultCodePage al describir datos de caracteres."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si los valores proporcionados para columnas de identidad se van a copiar al destino. Si es False, los valores de las columnas de identidad se generan automáticamente en el destino. Solo se aplica si está activada la carga rápida."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si las columnas que contienen NULL tendrán NULL insertado en el destino. Si es False, las columnas que contienen NULL tendrán sus valores predeterminados insertados en el destino. Solo se aplica si está activada la carga rápida."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica opciones para usar con la carga rápida. Solo se aplica si está activada la carga rápida."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica cuándo se emiten confirmaciones durante la inserción de datos. El valor 0 especifica que se emitirá una confirmación al final de la inserción de datos. Solo se aplica si está activada la carga rápida."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\cARGA_STG_PEDIDO\GRABAR_STG_PEDIDO.Connections[OleDbConnection]"
+                  connectionManagerID="{28DA4442-39E5-4068-A417-F18F40BD6167}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LAB04-PC09_SQLEXPRESS.BDPanaderia_STAGE]"
+                  description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\cARGA_STG_PEDIDO\GRABAR_STG_PEDIDO.Inputs[Entrada de destino de OLE DB]"
+                  errorOrTruncationOperation="Insertar"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de destino de OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\cARGA_STG_PEDIDO\GRABAR_STG_PEDIDO.Inputs[Entrada de destino de OLE DB].Columns[Cod_Pedido]"
+                      cachedDataType="wstr"
+                      cachedLength="3"
+                      cachedName="Cod_Pedido"
+                      externalMetadataColumnId="Package\cARGA_STG_PEDIDO\GRABAR_STG_PEDIDO.Inputs[Entrada de destino de OLE DB].ExternalColumns[Cod_Pedido]"
+                      lineageId="Package\cARGA_STG_PEDIDO\LEER_T_PEDIDO.Outputs[Salida de origen de OLE DB].Columns[Cod_Pedido]" />
+                    <inputColumn
+                      refId="Package\cARGA_STG_PEDIDO\GRABAR_STG_PEDIDO.Inputs[Entrada de destino de OLE DB].Columns[Nom_Cliente]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="Nom_Cliente"
+                      externalMetadataColumnId="Package\cARGA_STG_PEDIDO\GRABAR_STG_PEDIDO.Inputs[Entrada de destino de OLE DB].ExternalColumns[Nom_Cliente]"
+                      lineageId="Package\cARGA_STG_PEDIDO\LEER_T_PEDIDO.Outputs[Salida de origen de OLE DB].Columns[Nom_Cliente]" />
+                    <inputColumn
+                      refId="Package\cARGA_STG_PEDIDO\GRABAR_STG_PEDIDO.Inputs[Entrada de destino de OLE DB].Columns[tx_Giro]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="tx_Giro"
+                      externalMetadataColumnId="Package\cARGA_STG_PEDIDO\GRABAR_STG_PEDIDO.Inputs[Entrada de destino de OLE DB].ExternalColumns[Giro]"
+                      lineageId="Package\cARGA_STG_PEDIDO\Columna derivada.Outputs[Salida de columna derivada].Columns[tx_Giro]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\cARGA_STG_PEDIDO\GRABAR_STG_PEDIDO.Inputs[Entrada de destino de OLE DB].ExternalColumns[Sk_Pedido]"
+                      dataType="i4"
+                      name="Sk_Pedido" />
+                    <externalMetadataColumn
+                      refId="Package\cARGA_STG_PEDIDO\GRABAR_STG_PEDIDO.Inputs[Entrada de destino de OLE DB].ExternalColumns[Cod_Pedido]"
+                      dataType="wstr"
+                      length="3"
+                      name="Cod_Pedido" />
+                    <externalMetadataColumn
+                      refId="Package\cARGA_STG_PEDIDO\GRABAR_STG_PEDIDO.Inputs[Entrada de destino de OLE DB].ExternalColumns[Nom_Cliente]"
+                      dataType="wstr"
+                      length="20"
+                      name="Nom_Cliente" />
+                    <externalMetadataColumn
+                      refId="Package\cARGA_STG_PEDIDO\GRABAR_STG_PEDIDO.Inputs[Entrada de destino de OLE DB].ExternalColumns[Giro]"
+                      dataType="wstr"
+                      length="20"
+                      name="Giro" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\cARGA_STG_PEDIDO\GRABAR_STG_PEDIDO.Outputs[Salida de error de destino de OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de destino de OLE DB"
+                  synchronousInputId="Package\cARGA_STG_PEDIDO\GRABAR_STG_PEDIDO.Inputs[Entrada de destino de OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\cARGA_STG_PEDIDO\GRABAR_STG_PEDIDO.Outputs[Salida de error de destino de OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\cARGA_STG_PEDIDO\GRABAR_STG_PEDIDO.Outputs[Salida de error de destino de OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\cARGA_STG_PEDIDO\GRABAR_STG_PEDIDO.Outputs[Salida de error de destino de OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\cARGA_STG_PEDIDO\GRABAR_STG_PEDIDO.Outputs[Salida de error de destino de OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\cARGA_STG_PEDIDO\LEER_T_PEDIDO"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Origen de OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;7"
+              description="Origen de OLE DB"
+              name="LEER_T_PEDIDO"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowset">[dbo].[T_Pedido]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="Variable que contiene el comando SQL para ejecutar."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Fuerza el uso del valor de la propiedad DefaultCodePage al describir datos de caracteres."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="Asignaciones entre los parámetros del comando SQL y las variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\cARGA_STG_PEDIDO\LEER_T_PEDIDO.Connections[OleDbConnection]"
+                  connectionManagerID="{720CAEF1-2018-4DB9-8990-C9B461C96024}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LAB04-PC09_SQLEXPRESS.BDPanaderia_OLTP]"
+                  description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\cARGA_STG_PEDIDO\LEER_T_PEDIDO.Outputs[Salida de origen de OLE DB]"
+                  name="Salida de origen de OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\cARGA_STG_PEDIDO\LEER_T_PEDIDO.Outputs[Salida de origen de OLE DB].Columns[Cod_Pedido]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\cARGA_STG_PEDIDO\LEER_T_PEDIDO.Outputs[Salida de origen de OLE DB].ExternalColumns[Cod_Pedido]"
+                      length="3"
+                      lineageId="Package\cARGA_STG_PEDIDO\LEER_T_PEDIDO.Outputs[Salida de origen de OLE DB].Columns[Cod_Pedido]"
+                      name="Cod_Pedido"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\cARGA_STG_PEDIDO\LEER_T_PEDIDO.Outputs[Salida de origen de OLE DB].Columns[Nom_Cliente]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\cARGA_STG_PEDIDO\LEER_T_PEDIDO.Outputs[Salida de origen de OLE DB].ExternalColumns[Nom_Cliente]"
+                      length="20"
+                      lineageId="Package\cARGA_STG_PEDIDO\LEER_T_PEDIDO.Outputs[Salida de origen de OLE DB].Columns[Nom_Cliente]"
+                      name="Nom_Cliente"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\cARGA_STG_PEDIDO\LEER_T_PEDIDO.Outputs[Salida de origen de OLE DB].Columns[Giro]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\cARGA_STG_PEDIDO\LEER_T_PEDIDO.Outputs[Salida de origen de OLE DB].ExternalColumns[Giro]"
+                      length="20"
+                      lineageId="Package\cARGA_STG_PEDIDO\LEER_T_PEDIDO.Outputs[Salida de origen de OLE DB].Columns[Giro]"
+                      name="Giro"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\cARGA_STG_PEDIDO\LEER_T_PEDIDO.Outputs[Salida de origen de OLE DB].ExternalColumns[Cod_Pedido]"
+                      dataType="wstr"
+                      length="3"
+                      name="Cod_Pedido" />
+                    <externalMetadataColumn
+                      refId="Package\cARGA_STG_PEDIDO\LEER_T_PEDIDO.Outputs[Salida de origen de OLE DB].ExternalColumns[Nom_Cliente]"
+                      dataType="wstr"
+                      length="20"
+                      name="Nom_Cliente" />
+                    <externalMetadataColumn
+                      refId="Package\cARGA_STG_PEDIDO\LEER_T_PEDIDO.Outputs[Salida de origen de OLE DB].ExternalColumns[Giro]"
+                      dataType="wstr"
+                      length="20"
+                      name="Giro" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\cARGA_STG_PEDIDO\LEER_T_PEDIDO.Outputs[Salida de error de origen de OLE DB]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\cARGA_STG_PEDIDO\LEER_T_PEDIDO.Outputs[Salida de error de origen de OLE DB].Columns[Cod_Pedido]"
+                      dataType="wstr"
+                      length="3"
+                      lineageId="Package\cARGA_STG_PEDIDO\LEER_T_PEDIDO.Outputs[Salida de error de origen de OLE DB].Columns[Cod_Pedido]"
+                      name="Cod_Pedido" />
+                    <outputColumn
+                      refId="Package\cARGA_STG_PEDIDO\LEER_T_PEDIDO.Outputs[Salida de error de origen de OLE DB].Columns[Nom_Cliente]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\cARGA_STG_PEDIDO\LEER_T_PEDIDO.Outputs[Salida de error de origen de OLE DB].Columns[Nom_Cliente]"
+                      name="Nom_Cliente" />
+                    <outputColumn
+                      refId="Package\cARGA_STG_PEDIDO\LEER_T_PEDIDO.Outputs[Salida de error de origen de OLE DB].Columns[Giro]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\cARGA_STG_PEDIDO\LEER_T_PEDIDO.Outputs[Salida de error de origen de OLE DB].Columns[Giro]"
+                      name="Giro" />
+                    <outputColumn
+                      refId="Package\cARGA_STG_PEDIDO\LEER_T_PEDIDO.Outputs[Salida de error de origen de OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\cARGA_STG_PEDIDO\LEER_T_PEDIDO.Outputs[Salida de error de origen de OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\cARGA_STG_PEDIDO\LEER_T_PEDIDO.Outputs[Salida de error de origen de OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\cARGA_STG_PEDIDO\LEER_T_PEDIDO.Outputs[Salida de error de origen de OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\cARGA_STG_PEDIDO.Paths[Salida de columna derivada]"
+              endId="Package\cARGA_STG_PEDIDO\GRABAR_STG_PEDIDO.Inputs[Entrada de destino de OLE DB]"
+              name="Salida de columna derivada"
+              startId="Package\cARGA_STG_PEDIDO\Columna derivada.Outputs[Salida de columna derivada]" />
+            <path
+              refId="Package\cARGA_STG_PEDIDO.Paths[Salida de origen de OLE DB]"
+              endId="Package\cARGA_STG_PEDIDO\Columna derivada.Inputs[Entrada de columna derivada]"
+              name="Salida de origen de OLE DB"
+              startId="Package\cARGA_STG_PEDIDO\LEER_T_PEDIDO.Outputs[Salida de origen de OLE DB]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Tarea Ejecutar SQL"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:DTSID="{49835761-0919-4547-B7D6-EC1A333B5D9F}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Tarea Ejecutar SQL"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{28DA4442-39E5-4068-A417-F18F40BD6167}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE STG_Pedidos" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{2FF00019-726F-4844-83E6-F044A64BCD3D}"
+      DTS:From="Package\Tarea Ejecutar SQL"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\cARGA_STG_PEDIDO" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssge="clr-namespace:Microsoft.SqlServer.Graph.Extended;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        <AnnotationLayout
+          Text="OLTP_STG"
+          ParentId="Package"
+          Size="123,60"
+          Id="c27ec49d-aca4-403b-84a3-7130831e6393"
+          TopLeft="108,46">
+          <AnnotationLayout.FontInfo>
+            <mssge:FontInfo
+              Family="Tahoma"
+              Size="18"
+              Color="#FF008080"
+              Weight="Bold">
+              <mssge:FontInfo.TextDecorations>
+                <av:TextDecorationCollection />
+              </mssge:FontInfo.TextDecorations>
+            </mssge:FontInfo>
+          </AnnotationLayout.FontInfo>
+        </AnnotationLayout>
+        <NodeLayout
+          Size="179,42"
+          Id="Package\cARGA_STG_PEDIDO"
+          TopLeft="112,121" />
+        <NodeLayout
+          Size="170,42"
+          Id="Package\Tarea Ejecutar SQL"
+          TopLeft="259,279" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="344,279">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-142.5,-116"
+              Start="0,0"
+              End="-142.5,-108.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-54" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-54"
+                    Point2="0,-58"
+                    Point3="-4,-58" />
+                  <mssgle:LineSegment
+                    End="-138.5,-58" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-138.5,-58"
+                    Point2="-142.5,-58"
+                    Point3="-142.5,-62" />
+                  <mssgle:LineSegment
+                    End="-142.5,-108.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\cARGA_STG_PEDIDO">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="187,42"
+          Id="Package\cARGA_STG_PEDIDO\GRABAR_STG_PEDIDO"
+          TopLeft="497,392" />
+        <NodeLayout
+          Size="159,42"
+          Id="Package\cARGA_STG_PEDIDO\LEER_T_PEDIDO"
+          TopLeft="175,207" />
+        <NodeLayout
+          Size="164,42"
+          Id="Package\cARGA_STG_PEDIDO\Columna derivada"
+          TopLeft="509,238" />
+        <EdgeLayout
+          Id="Package\cARGA_STG_PEDIDO.Paths[Salida de origen de OLE DB]"
+          TopLeft="334,228">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="175,31"
+              Start="0,0"
+              End="167.5,31">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="83.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="83.5,0"
+                    Point2="87.5,0"
+                    Point3="87.5,4" />
+                  <mssgle:LineSegment
+                    End="87.5,27" />
+                  <mssgle:CubicBezierSegment
+                    Point1="87.5,27"
+                    Point2="87.5,31"
+                    Point3="91.5,31" />
+                  <mssgle:LineSegment
+                    End="167.5,31" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\cARGA_STG_PEDIDO.Paths[Salida de columna derivada]"
+          TopLeft="590.75,280">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,112"
+              Start="0,0"
+              End="0,104.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,104.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\cARGA_STG_PEDIDO\GRABAR_STG_PEDIDO">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\cARGA_STG_PEDIDO\LEER_T_PEDIDO">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
